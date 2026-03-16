@@ -1,0 +1,25 @@
+{
+  "_comment": "delaware Timesheet Automator config — keep this file private",
+
+  "gemini_key": "AIzaSyDMBTYL7d1oZQNMdA1v8cHlQLgetr8HfDE",
+
+  "user_id": "toon.dilissen@delaware.pro",
+
+  "project_codes": {
+    "DATS0011": {
+      "taskCode": "DATS0011.1.4",
+      "label": "DATS24 Finance UAT",
+      "keywords": ["dats24", "finance uat", "uat sprint", "test execution", "test case", "uat review"]
+    },
+    "THEMA001": {
+      "taskCode": "THEMA001.1.1",
+      "label": "Thema Foundries",
+      "keywords": ["thema", "foundries", "semiconductor", "sow", "statement of work", "oudenaarde"]
+    },
+    "INT0001": {
+      "taskCode": "INT0001.1.1",
+      "label": "Internal / overhead",
+      "keywords": ["internal", "team sync", "public cloud", "overhead", "training", "admin", "1:1", "delaware", "team meeting"]
+    }
+  }
+}

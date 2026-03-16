@@ -1,0 +1,15 @@
+{
+  "_comment": "Copy this file to config.json and fill in your values. Never commit config.json to git.",
+
+  "anthropic_key": "sk-ant-PASTE_YOUR_KEY_HERE",
+
+  "user_id": "PASTE_YOUR_DELAWARE_USERNAME_HERE",
+
+  "project_codes": {
+    "EXAMPLE001": {
+      "taskCode": "EXAMPLE001.1.1",
+      "label": "Example Project",
+      "keywords": ["example", "keywords", "from your meeting titles"]
+    }
+  }
+}
