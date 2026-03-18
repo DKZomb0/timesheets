@@ -183,7 +183,7 @@ tell application "Calendar"
     set output to ""
     repeat with c in every calendar
         repeat with e in (every event of c whose start date >= startDate and start date <= endDate)
-            if allday event of e is false then
+            if (allday event of e) is false then
                 set eStart to start date of e
                 set eEnd to end date of e
                 set eDur to (eEnd - eStart) / 60
@@ -667,6 +667,7 @@ def main():
     print("  F12 -> Network -> Fetch/XHR -> click any timeentry request")
     print("  -> Headers -> copy value after 'Bearer '\n")
     time_token = input("  Paste bearer token: ").strip()
+    time_token = time_token.encode("ascii", "ignore").decode("ascii")
     print()
 
     # Fetch live project codes from API for dropdown
@@ -693,17 +694,24 @@ def main():
     if "--today" in sys.argv:
         dates_to_process = [today]
     else:
-        candidates = []
-        d = today - datetime.timedelta(days=1)
-        while len(candidates) < 7:
-            if d.weekday() < 5:
-                candidates.append(d)
-            d -= datetime.timedelta(days=1)
+        monday = today - datetime.timedelta(days=today.weekday())
+        candidates = [
+            monday + datetime.timedelta(days=i)
+            for i in range(5)
+            if (monday + datetime.timedelta(days=i)) <= today
+        ]
+        candidates.reverse()  # most recent first
 
         print("\n  Which days to process?")
-        print("  (Just press Enter for yesterday only)\n")
+        print("  (Just press Enter for most recent day only)\n")
+        yesterday = today - datetime.timedelta(days=1)
         for i, day in enumerate(candidates):
-            tag = " <- yesterday" if i == 0 else ""
+            if day == today:
+                tag = " <- today"
+            elif day == yesterday:
+                tag = " <- yesterday"
+            else:
+                tag = ""
             print(f"  [{i+1}] {day.strftime('%A, %d %B %Y')}{tag}")
         print()
         choice = input("  Enter number(s), e.g. 1 or 1,2,3: ").strip()
